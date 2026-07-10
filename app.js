@@ -1,17 +1,20 @@
-import http from 'http';
 import { fastify } from 'fastify';
 
 const server = fastify();
 
-server.get('/health', (reply) => {
-    return reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send({Health: 'Servidor funcionando'})
+server.get('/health', (request, reply) => {
+    return reply.send({ Health: 'Servidor funcionando'});
 })
 
-server.setNotFoundHandler(async (reply) => {
-    return reply.code(404).type('text/plain').send('Essa rota não existe');
+server.setNotFoundHandler(async (request, reply) => {
+    return reply.send('Essa rota não existe');
 })
 
 server.listen({
     host: '0.0.0.0',
-    port: process.env.PORT ?? 3333,
+    port: Number(process.env.PORT) || 3333,
 })
+.catch((err) => {
+    console.error(err);
+    process.exit(1);
+});
