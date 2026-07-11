@@ -1,37 +1,33 @@
 ### Health check
 GET http://localhost:3333/health
 
-### List products (opcional: ?search=nome)
-GET http://localhost:3333/products
+### List clients (opcional: ?search=nome)
+GET http://localhost:3333/clients
 
-### Create product
-POST http://localhost:3333/products
+### Create client
+POST http://localhost:3333/clients
 Content-Type: application/json
 
 {
-    "nome": "Produto dois ",
-    "descricao": "OUTRO produto para testar",
-    "preco": 22.9,
-    "quantidade": 5,
-    "categoria": "demo",
+    "nome": "Cliente Exemplo",
+    "telefone": "11999999999",
+    "documento": "12345678900",
     "ativo": true
 }
 
-### Get product by id (substitua :id)
-GET http://localhost:3333/products/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
+### Get client by id (substitua :id)
+GET http://localhost:3333/clients/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
 
-### Update product
-PUT http://localhost:3333/products/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
+### Update client
+PUT http://localhost:3333/clients/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
 Content-Type: application/json
 
 {
-    "nome": "Produto Demo Atualizado",
-    "descricao": "Atualizado",
-    "preco": 24.5,
-    "quantidade": 8,
-    "categoria": "demo",
+    "nome": "Cliente Atualizado",
+    "telefone": "11988888888",
+    "documento": "12345678900",
     "ativo": true
 }
 
-### Delete product
-DELETE http://localhost:3333/products/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
+### Delete client
+DELETE http://localhost:3333/clients/8a9a9ee1-5306-4a23-a76d-6e334cfbe071
