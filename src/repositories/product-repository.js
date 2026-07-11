@@ -57,4 +57,10 @@ export class ProductRepositoryPostgres {
   async delete(id) {
     await this.pool.query('DELETE FROM products WHERE id=$1', [id]);
   }
+
+  // Ajuste focado de quantidade (usado só via movimentação de estoque)
+  async updateQuantidade(id, quantidade) {
+    const q = `UPDATE products SET quantidade=$1, atualizadoem=$2 WHERE id=$3`;
+    await this.pool.query(q, [quantidade, new Date().toISOString(), id]);
+  }
 }

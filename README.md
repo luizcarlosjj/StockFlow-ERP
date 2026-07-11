@@ -4,7 +4,7 @@ Projeto simples de API para gerenciar produtos e clientes usando Node.js e Postg
 
 ## Estrutura principal
 
-- `src/entities` - regras e validação de dados (produto e cliente)
+- `src/entities` - regras e validação de dados (produto, cliente e movimentação de estoque)
 - `src/infra` - configuração do banco de dados / conexão
 - `src/repositories` - acesso ao banco com consultas SQL
 - `src/usecases` - lógica da aplicação (criar, listar, atualizar, excluir)
@@ -25,6 +25,31 @@ Projeto simples de API para gerenciar produtos e clientes usando Node.js e Postg
 - `telefone` (string)
 - `documento` (string)
 - `ativo` (boolean)
+
+## Módulo de Estoque
+
+A quantidade de um produto não pode ser alterada diretamente: toda mudança
+passa por uma **movimentação** (ENTRADA ou SAÍDA), que atualiza o estoque do
+produto e registra um histórico imutável (append-only).
+
+### Rotas
+
+- `POST /estoque/entrada` - registra entrada (soma ao estoque)
+- `POST /estoque/saida` - registra saída (subtrai do estoque)
+- `GET /estoque/movimentacoes` - histórico completo
+- `GET /estoque/movimentacoes/:produtoId` - histórico de um produto
+
+### Campos esperados para movimentação (POST)
+
+- `produtoid` (uuid) - produto existente
+- `quantidade` (inteiro > 0)
+- `motivo` (string, opcional)
+
+### Regras de negócio
+
+- Produto deve existir.
+- Quantidade deve ser maior que zero.
+- Saída não pode ser maior que o estoque disponível (`400 estoque insuficiente`).
 
 ## Como usar
 

@@ -9,11 +9,11 @@ const server = Fastify();
 
 
 server.get('/health', (request, reply) => {
-    return reply.send({ Health: 'Servidor funcionando' });
+    return reply.send({ "status": 'ok' });
 });
 
 server.setNotFoundHandler(async (request, reply) => {
-    return reply.send('Essa rota não existe');
+    return reply.send({"message": "Route not found"});
 })
 
 await registerModules(server, pool);
