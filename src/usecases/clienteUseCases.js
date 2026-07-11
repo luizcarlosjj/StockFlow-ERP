@@ -2,9 +2,9 @@ import { Client } from '../entities/client.js';
 
 export async function createClient(repo, input) {
     const now = new Date().toISOString();
-    const client = new Client({ ...input, criadoem: now, atualizadoEm: null});
+    const client = new Client({ ...input, criadoem: now, atualizadoem: null });
     const id = await repo.create(client.toRecord());
-    return { id, ...client.toRecord()};
+    return { id, ...client.toRecord() };
 }
 
 

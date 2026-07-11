@@ -10,6 +10,7 @@ Content-Type: application/json
 
 {
     "nome": "Cliente Exemplo",
+    "email": "cliente@exemplo.com",
     "telefone": "11999999999",
     "documento": "12345678900",
     "ativo": true
@@ -24,6 +25,7 @@ Content-Type: application/json
 
 {
     "nome": "Cliente Atualizado",
+    "email": "cliente.atualizado@exemplo.com",
     "telefone": "11988888888",
     "documento": "12345678900",
     "ativo": true

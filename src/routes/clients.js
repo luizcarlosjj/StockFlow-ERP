@@ -12,14 +12,14 @@ export async function registerClientRoutes(server, repo) {
     return reply.send(clients);
     });
 
-    // Busca produto por id
+    // Busca cliente por id
     server.get('/clients/:id', async (req, reply) => {
     const clients = await getClientById(repo, req.params.id);
     if (!clients) return reply.status(404).send({ error: 'Not found' });
     return reply.send(clients);
     });
 
-    // Cria novo produto
+    // Cria novo cliente
     server.post('/clients', async (req, reply) => {
     try {
         const created = await createClient(repo, req.body);
@@ -29,7 +29,7 @@ export async function registerClientRoutes(server, repo) {
     }
     });
 
-    // Atualiza produto existente
+    // Atualiza cliente existente
     server.put('/clients/:id', async (req, reply) => {
     try {
         const updated = await updateClient(repo, req.params.id, req.body);
@@ -40,7 +40,7 @@ export async function registerClientRoutes(server, repo) {
     }
     });
 
-    // Remove produto
+    // Remove cliente
     server.delete('/clients/:id', async (req, reply) => {
     const ok = await deleteClient(repo, req.params.id);
     if (!ok) return reply.status(404).send({ error: 'Not found' });

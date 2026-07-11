@@ -1,13 +1,11 @@
 import Fastify from 'fastify';
 import dotenv from 'dotenv';
 import { pool } from './src/infra/db.js';
-import { ProductRepositoryPostgres } from './src/repositories/product-repository.js';
-import { registerProductRoutes } from './src/routes/products.js';
+import { registerModules } from './src/modules/index.js';
 
 dotenv.config();
 
 const server = Fastify();
-const repo = new ProductRepositoryPostgres(pool);
 
 
 server.get('/health', (request, reply) => {
@@ -18,7 +16,7 @@ server.setNotFoundHandler(async (request, reply) => {
     return reply.send('Essa rota não existe');
 })
 
-await registerProductRoutes(server, repo);
+await registerModules(server, pool);
 
 server.listen({
     host: '0.0.0.0',

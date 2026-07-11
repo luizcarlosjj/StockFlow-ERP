@@ -18,6 +18,14 @@ Projeto simples de API para gerenciar produtos e clientes usando Node.js e Postg
 - `PUT /clients/:id` - atualizar cliente
 - `DELETE /clients/:id` - excluir cliente
 
+## Campos esperados para cliente
+
+- `nome` (string)
+- `email` (string)
+- `telefone` (string)
+- `documento` (string)
+- `ativo` (boolean)
+
 ## Como usar
 
 1. Instale dependências:
